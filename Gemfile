@@ -28,6 +28,9 @@ gem 'simple_form', '~> 5.1'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise', '~> 4.7'
 
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
