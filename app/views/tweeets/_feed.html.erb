@@ -1,4 +1,5 @@
 <div class='column is-half'>
+<% if user_signed_in? %>
   <article class='media box'>
     <figure class='media-left'>
       <p class='image is-64x64'>
@@ -9,7 +10,7 @@
       <%= render 'tweeets/form'%>
     </div>
   </article>
-
+<% end %>
 
 <% @tweeets.each do |tweeet| %>
   <div class='box'>
@@ -21,12 +22,15 @@
       </div>
       <div class='media-content'>
         <div class='content'>
-          <strong>Andy Leverenzt</strong><br>
-          <small>@webcrunch</small><br>
+         <strong>Chrys<%#= tweeet.user.name %></strong><br>
+          <small>@mchrys<%#= tweeet.user.username%></small><br>
+          
           <p>
             <%= tweeet.tweeet%>
           </p>
         </div>
+        <% if user_signed_in? %>
+
         <nav class='level'>
           <div class='level-left is-mobile'>
             <%= link_to tweeet, class: 'level-item' do %>
@@ -39,6 +43,7 @@
               <span class='icon'><i class='fas fa-trash' aria-hidden='true'></i> </span>
             <% end %>
         </nav>
+        <% end %>
       </div>
     </article>
   </div>

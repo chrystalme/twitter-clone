@@ -8,12 +8,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "https://use.fontawesome.com/releases/v5.15.1/css/all.css" %>
-    <%# <!--- <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
+    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'  %>  
   </head>
 
   <body>
-    <!--- <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> --->
     <% if flash[:notice] %>
       <div class='notification is-primary global-notification'>
         <p class="notice"><%= notice %></p>
@@ -41,12 +39,24 @@
           <div class='navbar-end'>
          <div class='navbar-item'>
             <div class='field is-grouped'>
+              <% if user_signed_in? %>
               <p class='control'>
-                <%= link_to 'New tweeet', new_tweeet_path, class: 'button is-info is-inverted' %>
+                <%= link_to 'New tweeet', root_path, class: 'button is-info is-inverted' %>
+              </p>
+                <p class='control'>
+                  <%= link_to current_user.name, edit_user_registration_path, class: 'button is-info' %>
+                </p>
+                <p class='control'>
+                  <%= link_to 'LogOut', destroy_user_session_path, method: :delete, class: 'button is-info' %>
+                </p>
+              <% else %>
+              <p class='control'>
+                <%= link_to 'Sign In', new_user_session_path, class: 'button is-info'%>
               </p>
               <p class='control'>
-                Sign Up
+                <%= link_to 'Sign Up', new_user_registration_path, class: 'button is-info'%>
               </p>
+              <% end %>
             </div>
           </div>
         </div>
